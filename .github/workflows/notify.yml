@@ -2,7 +2,7 @@ name: CampusBell - Daily Timetable Reminder
 
 on:
   schedule:
-    - cron: '0 3 * * 1-5' # Runs Mon–Fri at 3:00 AM UTC (8:30 AM IST)
+    - cron: '0 2 * * 1-5' # Runs Mon–Fri at 2:00 AM UTC (7:30 AM IST)
   workflow_dispatch:       # Also allows manual trigger from GitHub Actions tab
     inputs:
       day:
@@ -38,7 +38,7 @@ jobs:
             "mobile_number": os.environ.get("MOBILE_NUMBER", ""),
             "active_channel": os.environ.get("ACTIVE_CHANNEL", "ntfy_push"),
             "daily_reminder_enabled": True,
-            "daily_reminder_time": "08:30",
+            "daily_reminder_time": "07:00",
             "pre_class_reminder_enabled": True,
             "pre_class_reminder_minutes": 15,
             "timezone": "Asia/Kolkata",
