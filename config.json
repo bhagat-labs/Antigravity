@@ -1,0 +1,27 @@
+{
+  "mobile_number": "+919902952436",
+  "active_channel": "ntfy_push",
+  "daily_reminder_enabled": true,
+  "daily_reminder_time": "20:21",
+  "pre_class_reminder_enabled": true,
+  "pre_class_reminder_minutes": 15,
+  "timezone": "Asia/Kolkata",
+  "callmebot": {
+    "phone": "+919876543210",
+    "api_key": ""
+  },
+  "ntfy": {
+    "topic": "timetable_reminders_campus",
+    "server": "https://ntfy.sh"
+  },
+  "twilio": {
+    "account_sid": "",
+    "auth_token": "",
+    "phone_number": "",
+    "whatsapp_sender": "whatsapp:+14155238886"
+  },
+  "telegram": {
+    "bot_token": "",
+    "chat_id": ""
+  }
+}

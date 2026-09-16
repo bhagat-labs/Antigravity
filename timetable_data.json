@@ -1,0 +1,222 @@
+[
+  {
+    "id": "mon-1",
+    "day": "Monday",
+    "startTime": "09:50 AM",
+    "endTime": "10:40 AM",
+    "start24": "09:50",
+    "end24": "10:40",
+    "subject": "Basic Engineering",
+    "classType": "Lab",
+    "venue": "AB1-406C"
+  },
+  {
+    "id": "mon-2",
+    "day": "Monday",
+    "startTime": "10:40 AM",
+    "endTime": "11:30 AM",
+    "start24": "10:40",
+    "end24": "11:30",
+    "subject": "Basic Engineering",
+    "classType": "Lab",
+    "venue": "AB1-406C"
+  },
+  {
+    "id": "mon-3",
+    "day": "Monday",
+    "startTime": "02:00 PM",
+    "endTime": "02:50 PM",
+    "start24": "14:00",
+    "end24": "14:50",
+    "subject": "English",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "mon-4",
+    "day": "Monday",
+    "startTime": "03:50 PM",
+    "endTime": "04:40 PM",
+    "start24": "15:50",
+    "end24": "16:40",
+    "subject": "Engineering Physics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "mon-5",
+    "day": "Monday",
+    "startTime": "04:40 PM",
+    "endTime": "05:30 PM",
+    "start24": "16:40",
+    "end24": "17:30",
+    "subject": "Mathematics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "tue-1",
+    "day": "Tuesday",
+    "startTime": "02:00 PM",
+    "endTime": "02:50 PM",
+    "start24": "14:00",
+    "end24": "14:50",
+    "subject": "Mathematics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "tue-2",
+    "day": "Tuesday",
+    "startTime": "04:40 PM",
+    "endTime": "05:30 PM",
+    "start24": "16:40",
+    "end24": "17:30",
+    "subject": "Basic Engineering",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "tue-3",
+    "day": "Tuesday",
+    "startTime": "05:40 PM",
+    "endTime": "06:30 PM",
+    "start24": "17:40",
+    "end24": "18:30",
+    "subject": "Engineering Physics",
+    "classType": "Lab",
+    "venue": "AB1-202"
+  },
+  {
+    "id": "tue-4",
+    "day": "Tuesday",
+    "startTime": "06:30 PM",
+    "endTime": "07:20 PM",
+    "start24": "18:30",
+    "end24": "19:20",
+    "subject": "Engineering Physics",
+    "classType": "Lab",
+    "venue": "AB1-202"
+  },
+  {
+    "id": "wed-1",
+    "day": "Wednesday",
+    "startTime": "02:00 PM",
+    "endTime": "02:50 PM",
+    "start24": "14:00",
+    "end24": "14:50",
+    "subject": "Basic Engineering",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "wed-2",
+    "day": "Wednesday",
+    "startTime": "02:50 PM",
+    "endTime": "03:40 PM",
+    "start24": "14:50",
+    "end24": "15:40",
+    "subject": "English",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "wed-3",
+    "day": "Wednesday",
+    "startTime": "04:40 PM",
+    "endTime": "05:30 PM",
+    "start24": "16:40",
+    "end24": "17:30",
+    "subject": "Engineering Physics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "thu-1",
+    "day": "Thursday",
+    "startTime": "10:40 AM",
+    "endTime": "11:30 AM",
+    "start24": "10:40",
+    "end24": "11:30",
+    "subject": "English",
+    "classType": "Lab",
+    "venue": "AB1-405"
+  },
+  {
+    "id": "thu-2",
+    "day": "Thursday",
+    "startTime": "11:30 AM",
+    "endTime": "12:30 PM",
+    "start24": "11:30",
+    "end24": "12:30",
+    "subject": "English",
+    "classType": "Lab",
+    "venue": "AB1-405"
+  },
+  {
+    "id": "thu-3",
+    "day": "Thursday",
+    "startTime": "02:00 PM",
+    "endTime": "02:50 PM",
+    "start24": "14:00",
+    "end24": "14:50",
+    "subject": "Engineering Physics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "thu-4",
+    "day": "Thursday",
+    "startTime": "02:50 PM",
+    "endTime": "03:40 PM",
+    "start24": "14:50",
+    "end24": "15:40",
+    "subject": "Mathematics",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "fri-1",
+    "day": "Friday",
+    "startTime": "02:50 PM",
+    "endTime": "03:40 PM",
+    "start24": "14:50",
+    "end24": "15:40",
+    "subject": "Basic Engineering",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "fri-2",
+    "day": "Friday",
+    "startTime": "03:40 PM",
+    "endTime": "04:30 PM",
+    "start24": "15:40",
+    "end24": "16:30",
+    "subject": "English",
+    "classType": "Theory",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "fri-3",
+    "day": "Friday",
+    "startTime": "05:40 PM",
+    "endTime": "06:30 PM",
+    "start24": "17:40",
+    "end24": "18:30",
+    "subject": "Basic Engineering",
+    "classType": "Lab",
+    "venue": "AB1-613"
+  },
+  {
+    "id": "fri-4",
+    "day": "Friday",
+    "startTime": "06:30 PM",
+    "endTime": "07:20 PM",
+    "start24": "18:30",
+    "end24": "19:20",
+    "subject": "Basic Engineering",
+    "classType": "Lab",
+    "venue": "AB1-613"
+  }
+]

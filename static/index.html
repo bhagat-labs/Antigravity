@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusBell • Daily Timetable & Mobile Reminder System</title>
+  <meta name="description" content="Automated daily college timetable reminders sent to your mobile phone via WhatsApp, SMS, and Push Notifications.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- Background Glow Accents -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- Main Container -->
+  <div class="app-wrapper">
+    
+    <!-- Navigation / Header -->
+    <header class="app-header" id="app-header">
+      <div class="brand-group">
+        <div class="brand-icon-wrapper">
+          <span class="brand-emoji">🎓</span>
+          <span class="bell-badge-ping"></span>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">CampusBell</h1>
+          <p class="brand-subtitle">Daily Timetable & Mobile Reminder System</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Campus Clock -->
+        <div class="live-clock-card" id="live-clock-card" title="Local Campus Time">
+          <span class="clock-icon">🕒</span>
+          <span class="clock-time" id="clock-time">--:--:--</span>
+          <span class="clock-day-badge" id="clock-day">Today</span>
+        </div>
+
+        <!-- Scheduler Status Pill -->
+        <div class="scheduler-pill" id="scheduler-pill" title="Click to toggle background scheduler">
+          <span class="status-dot active" id="scheduler-dot"></span>
+          <span class="status-label" id="scheduler-status-text">Scheduler: Active</span>
+          <button class="pill-toggle-btn" id="btn-toggle-scheduler" aria-label="Toggle Scheduler">
+            <span class="toggle-icon">⚙️</span>
+          </button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="btn-theme-toggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon" id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      
+      <!-- Top Hero Section: Today's Spotlight & Quick Trigger -->
+      <section class="hero-section" id="hero-section">
+        <div class="hero-card glass-panel">
+          <div class="hero-content">
+            <div class="hero-badge-row">
+              <span class="badge badge-primary" id="today-name-badge">Wednesday Schedule</span>
+              <span class="badge badge-secondary" id="today-class-count-badge">3 Classes Today</span>
+              <span class="badge badge-channel" id="active-channel-badge">📡 Channel: WhatsApp</span>
+            </div>
+
+            <div class="next-class-spotlight" id="next-class-spotlight">
+              <div class="spotlight-indicator">
+                <span class="pulse-ring"></span>
+                <span class="spotlight-label">NEXT CLASS TODAY</span>
+              </div>
+              <h2 class="spotlight-subject" id="next-subject-title">Loading schedule...</h2>
+              <div class="spotlight-meta" id="spotlight-meta">
+                <span class="meta-item time" id="next-time-val">⏰ --:--</span>
+                <span class="meta-item type" id="next-type-val">📝 Theory</span>
+                <span class="meta-item venue" id="next-venue-val">📍 Venue: --</span>
+              </div>
+              <div class="countdown-timer-box" id="countdown-timer-box">
+                <span class="countdown-caption">Starts in:</span>
+                <span class="countdown-digits" id="countdown-digits">Calculating...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-actions-panel">
+            <button class="btn btn-primary btn-glow" id="btn-send-now">
+              <span class="btn-icon">🚀</span>
+              <span class="btn-text">Send Today's Timetable to Mobile</span>
+            </button>
+            
+            <button class="btn btn-secondary" id="btn-preview-phone">
+              <span class="btn-icon">📱</span>
+              <span class="btn-text">Preview Message Format</span>
+            </button>
+
+            <div class="scheduler-next-info">
+              <span class="next-icon">⏱️</span>
+              <span class="next-text">Next auto-briefing: <strong id="next-briefing-time">Tomorrow at 07:30 AM</strong></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two-Column Layout: Schedule Viewer + Mobile Settings & Live Mockup -->
+      <div class="content-columns">
+        
+        <!-- Left Column: Timetable Explorer -->
+        <section class="timetable-section glass-panel" id="timetable-section">
+          <div class="section-header">
+            <div class="section-title-group">
+              <h2 class="section-title">Weekly Class Timetable</h2>
+              <p class="section-subtitle">Classes extracted from your timetable schedule</p>
+            </div>
+            
+            <div class="day-selector-tabs" id="day-selector-tabs" role="tablist">
+              <button class="tab-btn" data-day="Monday" role="tab">Mon</button>
+              <button class="tab-btn" data-day="Tuesday" role="tab">Tue</button>
+              <button class="tab-btn active" data-day="Wednesday" role="tab">Wed</button>
+              <button class="tab-btn" data-day="Thursday" role="tab">Thu</button>
+              <button class="tab-btn" data-day="Friday" role="tab">Fri</button>
+              <button class="tab-btn tab-all" data-day="ALL" role="tab">All Days</button>
+            </div>
+          </div>
+
+          <!-- Filter & Statistics Bar -->
+          <div class="filter-bar">
+            <div class="filter-chips">
+              <button class="chip active" data-filter="all" id="filter-all">All (<span id="count-all">0</span>)</button>
+              <button class="chip chip-lab" data-filter="lab" id="filter-lab">🔬 Labs (<span id="count-lab">0</span>)</button>
+              <button class="chip chip-theory" data-filter="theory" id="filter-theory">📝 Theory (<span id="count-theory">0</span>)</button>
+              <button class="chip chip-clubbed active" id="btn-toggle-club" title="Toggle clubbing continuous lab periods together">
+                ✨ Club Continuous Labs (On)
+              </button>
+            </div>
+
+            <div class="day-action-group">
+              <button class="btn-text-action" id="btn-send-selected-day" title="Send this specific day's timetable to your mobile">
+                📤 Dispatch Selected Day
+              </button>
+            </div>
+          </div>
+
+          <!-- Schedule Cards Container -->
+          <div class="schedule-cards-container" id="schedule-cards-container">
+            <!-- Dynamic cards injected here -->
+          </div>
+        </section>
+
+        <!-- Right Column: Mobile Settings & Phone Preview Simulator -->
+        <aside class="sidebar-section">
+          
+          <!-- Mobile Configuration Card -->
+          <div class="config-card glass-panel" id="config-card">
+            <div class="section-header">
+              <div class="section-title-group">
+                <h2 class="section-title">Mobile Reminder Settings</h2>
+                <p class="section-subtitle">Configure your phone number & delivery channel</p>
+              </div>
+            </div>
+
+            <form id="settings-form" class="settings-form">
+              <!-- Mobile Number Field -->
+              <div class="form-group">
+                <label for="input-mobile-number" class="form-label">
+                  Recipient Mobile Number
+                  <span class="label-badge">Required</span>
+                </label>
+                <div class="input-with-icon">
+                  <span class="field-icon">📞</span>
+                  <input 
+                    type="tel" 
+                    id="input-mobile-number" 
+                    class="form-control" 
+                    placeholder="+91 98765 43210" 
+                    required 
+                    autocomplete="tel"
+                  >
+                </div>
+                <small class="form-hint">Include country code (e.g. +91 for India, +1 for US/Canada)</small>
+              </div>
+
+              <!-- Channel Selector -->
+              <div class="form-group">
+                <label class="form-label">Delivery Channel</label>
+                <div class="channel-options-grid">
+                  
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="callmebot_whatsapp">
+                    <div class="channel-card-content">
+                      <span class="channel-icon">🟢</span>
+                      <div class="channel-info">
+                        <strong>WhatsApp</strong>
+                        <span>Free via CallMeBot</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="ntfy_push">
+                    <div class="channel-card-content">
+                      <span class="channel-icon">📲</span>
+                      <div class="channel-info">
+                        <strong>Mobile Push</strong>
+                        <span>Free via ntfy app</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="twilio_whatsapp">
+                    <div class="channel-card-content">
+                      <span class="channel-icon">💬</span>
+                      <div class="channel-info">
+                        <strong>Twilio WhatsApp</strong>
+                        <span>Official Twilio API</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="twilio_sms">
+                    <div class="channel-card-content">
+                      <span class="channel-icon">✉️</span>
+                      <div class="channel-info">
+                        <strong>Direct SMS</strong>
+                        <span>Twilio Carrier SMS</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="telegram">
+                    <div class="channel-card-content">
+                      <span class="channel-icon">✈️</span>
+                      <div class="channel-info">
+                        <strong>Telegram Bot</strong>
+                        <span>Mobile Telegram App</span>
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="channel-card">
+                    <input type="radio" name="channel_radio" value="simulation" checked>
+                    <div class="channel-card-content">
+                      <span class="channel-icon">🧪</span>
+                      <div class="channel-info">
+                        <strong>Simulation Mode</strong>
+                        <span>Instant Local Preview</span>
+                      </div>
+                    </div>
+                  </label>
+
+                </div>
+              </div>
+
+              <!-- Dynamic Provider Setup Fields -->
+              <div id="provider-details-box" class="provider-details-box">
+                <!-- Injected via JavaScript based on chosen channel -->
+              </div>
+
+              <!-- Scheduling Timers -->
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="input-reminder-time" class="form-label">Daily Briefing Time</label>
+                  <input type="time" id="input-reminder-time" class="form-control" value="07:30">
+                  <small class="form-hint">Dispatches every morning</small>
+                </div>
+
+                <div class="form-group flex-1">
+                  <label for="input-preclass-minutes" class="form-label">Pre-Class Alert</label>
+                  <select id="input-preclass-minutes" class="form-control">
+                    <option value="10">10 minutes before</option>
+                    <option value="15" selected>15 minutes before</option>
+                    <option value="30">30 minutes before</option>
+                    <option value="0">Disabled</option>
+                  </select>
+                  <small class="form-hint">Upcoming lecture alert</small>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-save" id="btn-save-settings">
+                <span>💾 Save Settings & Apply</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Smartphone Live Preview Mockup -->
+          <div class="phone-mockup-card glass-panel" id="phone-mockup-card">
+            <div class="mockup-header">
+              <span class="mockup-title">📱 Live Mobile Notification Preview</span>
+              <span class="device-notch"></span>
+            </div>
+
+            <div class="smartphone-frame">
+              <div class="phone-screen">
+                <div class="phone-status-bar">
+                  <span class="phone-time" id="phone-clock">07:30</span>
+                  <div class="phone-icons">
+                    <span>📶</span>
+                    <span>🔋 98%</span>
+                  </div>
+                </div>
+
+                <div class="phone-chat-header">
+                  <div class="chat-avatar">🎓</div>
+                  <div class="chat-info">
+                    <strong id="chat-sender-name">CampusBell Timetable</strong>
+                    <span class="online-indicator">Online</span>
+                  </div>
+                </div>
+
+                <div class="chat-bubble-container">
+                  <div class="chat-bubble" id="mockup-message-bubble">
+                    <!-- Formatted timetable message preview injected here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- Execution History & Delivery Logs -->
+      <section class="logs-section glass-panel" id="logs-section">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Delivery History & Scheduler Logs</h2>
+            <p class="section-subtitle">Real-time record of dispatched timetable reminders</p>
+          </div>
+          <div class="logs-actions">
+            <button class="btn btn-outline" id="btn-refresh-logs">🔄 Refresh Logs</button>
+          </div>
+        </div>
+
+        <div class="logs-table-wrapper">
+          <table class="logs-table" id="logs-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Status</th>
+                <th>Channel</th>
+                <th>Recipient</th>
+                <th>Type</th>
+                <th>Preview</th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody">
+              <tr>
+                <td colspan="6" class="empty-state">No reminders sent yet. Click "Send Today's Timetable to Mobile" above to test!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>🎓 <strong>CampusBell</strong> • Automated Timetable Notification Service for University Students</p>
+      <p class="footer-note">Crafted for seamless academic schedules • Venues AB1-406C, AB4-305, AB1-202, AB1-405, AB1-613</p>
+    </footer>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
