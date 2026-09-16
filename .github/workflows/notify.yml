@@ -1,0 +1,91 @@
+name: CampusBell - Daily Timetable Reminder
+
+on:
+  schedule:
+    - cron: '0 3 * * 1-5' # Runs Mon–Fri at 3:00 AM UTC (8:30 AM IST)
+  workflow_dispatch:       # Also allows manual trigger from GitHub Actions tab
+    inputs:
+      day:
+        description: 'Day to send reminder for (e.g. Monday). Leave blank for today.'
+        required: false
+        default: ''
+      channel:
+        description: 'Override notification channel (ntfy_push, callmebot_whatsapp, twilio_whatsapp, twilio_sms, telegram, simulation)'
+        required: false
+        default: ''
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests fastapi uvicorn
+
+      - name: Write config from secrets
+        run: |
+          python - <<'EOF'
+          import json, os
+          config = {
+            "mobile_number": os.environ.get("MOBILE_NUMBER", ""),
+            "active_channel": os.environ.get("ACTIVE_CHANNEL", "ntfy_push"),
+            "daily_reminder_enabled": True,
+            "daily_reminder_time": "08:30",
+            "pre_class_reminder_enabled": True,
+            "pre_class_reminder_minutes": 15,
+            "timezone": "Asia/Kolkata",
+            "callmebot": {
+              "phone": os.environ.get("CALLMEBOT_PHONE", ""),
+              "api_key": os.environ.get("CALLMEBOT_API_KEY", "")
+            },
+            "ntfy": {
+              "topic": os.environ.get("NTFY_TOPIC", "timetable_reminders_campus"),
+              "server": os.environ.get("NTFY_SERVER", "https://ntfy.sh")
+            },
+            "twilio": {
+              "account_sid": os.environ.get("TWILIO_ACCOUNT_SID", ""),
+              "auth_token": os.environ.get("TWILIO_AUTH_TOKEN", ""),
+              "phone_number": os.environ.get("TWILIO_PHONE_NUMBER", ""),
+              "whatsapp_sender": "whatsapp:+14155238886"
+            },
+            "telegram": {
+              "bot_token": os.environ.get("TELEGRAM_BOT_TOKEN", ""),
+              "chat_id": os.environ.get("TELEGRAM_CHAT_ID", "")
+            }
+          }
+          with open("config.json", "w") as f:
+            json.dump(config, f, indent=2)
+          print("✅ config.json written from secrets.")
+          EOF
+        env:
+          MOBILE_NUMBER: ${{ secrets.MOBILE_NUMBER }}
+          ACTIVE_CHANNEL: ${{ secrets.ACTIVE_CHANNEL }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_API_KEY: ${{ secrets.CALLMEBOT_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Send daily timetable reminder
+        run: |
+          DAY_ARG=""
+          CHANNEL_ARG=""
+          if [ -n "${{ github.event.inputs.day }}" ]; then
+            DAY_ARG="--day ${{ github.event.inputs.day }}"
+          fi
+          if [ -n "${{ github.event.inputs.channel }}" ]; then
+            CHANNEL_ARG="--channel ${{ github.event.inputs.channel }}"
+          fi
+          python send_now.py $DAY_ARG $CHANNEL_ARG
