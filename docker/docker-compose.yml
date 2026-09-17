@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  campusbell:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: campusbell
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist user data outside the container
+      - campusbell_data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=utf-8
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/status')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  campusbell_data:
