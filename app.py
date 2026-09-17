@@ -161,6 +161,9 @@ async def toggle_scheduler():
 async def get_logs_endpoint():
     return {"logs": notifier.get_logs()}
 
+@app.get("/api/health-ping")
+def health_ping():
+    return {"status": "ok", "ping": "active"}
 
 if __name__ == "__main__":
     import uvicorn

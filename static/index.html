@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=20260917-drawer">
 </head>
 <body>
   <!-- Background Glow Accents -->
@@ -157,143 +157,8 @@
           </div>
         </section>
 
-        <!-- Right Column: Mobile Settings & Phone Preview Simulator -->
+        <!-- Right Column: Phone Preview Simulator only -->
         <aside class="sidebar-section">
-          
-          <!-- Mobile Configuration Card -->
-          <div class="config-card glass-panel" id="config-card">
-            <div class="section-header">
-              <div class="section-title-group">
-                <h2 class="section-title">Mobile Reminder Settings</h2>
-                <p class="section-subtitle">Configure your phone number & delivery channel</p>
-              </div>
-            </div>
-
-            <form id="settings-form" class="settings-form">
-              <!-- Mobile Number Field -->
-              <div class="form-group">
-                <label for="input-mobile-number" class="form-label">
-                  Recipient Mobile Number
-                  <span class="label-badge">Required</span>
-                </label>
-                <div class="input-with-icon">
-                  <span class="field-icon">📞</span>
-                  <input 
-                    type="tel" 
-                    id="input-mobile-number" 
-                    class="form-control" 
-                    placeholder="+91 98765 43210" 
-                    required 
-                    autocomplete="tel"
-                  >
-                </div>
-                <small class="form-hint">Include country code (e.g. +91 for India, +1 for US/Canada)</small>
-              </div>
-
-              <!-- Channel Selector -->
-              <div class="form-group">
-                <label class="form-label">Delivery Channel</label>
-                <div class="channel-options-grid">
-                  
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="callmebot_whatsapp">
-                    <div class="channel-card-content">
-                      <span class="channel-icon">🟢</span>
-                      <div class="channel-info">
-                        <strong>WhatsApp</strong>
-                        <span>Free via CallMeBot</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="ntfy_push">
-                    <div class="channel-card-content">
-                      <span class="channel-icon">📲</span>
-                      <div class="channel-info">
-                        <strong>Mobile Push</strong>
-                        <span>Free via ntfy app</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="twilio_whatsapp">
-                    <div class="channel-card-content">
-                      <span class="channel-icon">💬</span>
-                      <div class="channel-info">
-                        <strong>Twilio WhatsApp</strong>
-                        <span>Official Twilio API</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="twilio_sms">
-                    <div class="channel-card-content">
-                      <span class="channel-icon">✉️</span>
-                      <div class="channel-info">
-                        <strong>Direct SMS</strong>
-                        <span>Twilio Carrier SMS</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="telegram">
-                    <div class="channel-card-content">
-                      <span class="channel-icon">✈️</span>
-                      <div class="channel-info">
-                        <strong>Telegram Bot</strong>
-                        <span>Mobile Telegram App</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="channel-card">
-                    <input type="radio" name="channel_radio" value="simulation" checked>
-                    <div class="channel-card-content">
-                      <span class="channel-icon">🧪</span>
-                      <div class="channel-info">
-                        <strong>Simulation Mode</strong>
-                        <span>Instant Local Preview</span>
-                      </div>
-                    </div>
-                  </label>
-
-                </div>
-              </div>
-
-              <!-- Dynamic Provider Setup Fields -->
-              <div id="provider-details-box" class="provider-details-box">
-                <!-- Injected via JavaScript based on chosen channel -->
-              </div>
-
-              <!-- Scheduling Timers -->
-              <div class="form-row">
-                <div class="form-group flex-1">
-                  <label for="input-reminder-time" class="form-label">Daily Briefing Time</label>
-                  <input type="time" id="input-reminder-time" class="form-control" value="07:30">
-                  <small class="form-hint">Dispatches every morning</small>
-                </div>
-
-                <div class="form-group flex-1">
-                  <label for="input-preclass-minutes" class="form-label">Pre-Class Alert</label>
-                  <select id="input-preclass-minutes" class="form-control">
-                    <option value="10">10 minutes before</option>
-                    <option value="15" selected>15 minutes before</option>
-                    <option value="30">30 minutes before</option>
-                    <option value="0">Disabled</option>
-                  </select>
-                  <small class="form-hint">Upcoming lecture alert</small>
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-save" id="btn-save-settings">
-                <span>💾 Save Settings & Apply</span>
-              </button>
-            </form>
-          </div>
 
           <!-- Smartphone Live Preview Mockup -->
           <div class="phone-mockup-card glass-panel" id="phone-mockup-card">
@@ -375,6 +240,164 @@
 
   </div>
 
-  <script src="/static/app.js"></script>
+  <!-- ══ Sliding Settings Drawer ══════════════════════════════════════════ -->
+  <!-- Backdrop -->
+  <div class="settings-backdrop" id="settings-backdrop"></div>
+
+  <!-- Tab handle (always visible on the right edge) -->
+  <button class="settings-drawer-tab" id="settings-drawer-tab" aria-label="Open Mobile Reminder Settings" aria-expanded="false" aria-controls="settings-drawer">
+    <span class="drawer-tab-icon">⚙️</span>
+    <span class="drawer-tab-label">Settings</span>
+  </button>
+
+  <!-- The drawer panel itself -->
+  <aside class="settings-drawer glass-panel" id="settings-drawer" role="dialog" aria-label="Mobile Reminder Settings" aria-modal="true">
+    <div class="drawer-inner">
+      <!-- Drawer header -->
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <span class="drawer-icon-badge">⚙️</span>
+          <div>
+            <h2 class="drawer-title">Mobile Reminder Settings</h2>
+            <p class="drawer-subtitle">Configure your phone number &amp; delivery channel</p>
+          </div>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close settings">
+          <span>✕</span>
+        </button>
+      </div>
+
+      <!-- Settings form (same content as before) -->
+      <div class="drawer-body">
+        <form id="settings-form" class="settings-form">
+          <!-- Mobile Number Field -->
+          <div class="form-group">
+            <label for="input-mobile-number" class="form-label">
+              Recipient Mobile Number
+              <span class="label-badge">Required</span>
+            </label>
+            <div class="input-with-icon">
+              <span class="field-icon">📞</span>
+              <input 
+                type="tel" 
+                id="input-mobile-number" 
+                class="form-control" 
+                placeholder="+91 98765 43210" 
+                required 
+                autocomplete="tel"
+              >
+            </div>
+            <small class="form-hint">Include country code (e.g. +91 for India, +1 for US/Canada)</small>
+          </div>
+
+          <!-- Channel Selector -->
+          <div class="form-group">
+            <label class="form-label">Delivery Channel</label>
+            <div class="channel-options-grid">
+              
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="callmebot_whatsapp">
+                <div class="channel-card-content">
+                  <span class="channel-icon">🟢</span>
+                  <div class="channel-info">
+                    <strong>WhatsApp</strong>
+                    <span>Free via CallMeBot</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="ntfy_push">
+                <div class="channel-card-content">
+                  <span class="channel-icon">📲</span>
+                  <div class="channel-info">
+                    <strong>Mobile Push</strong>
+                    <span>Free via ntfy app</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="twilio_whatsapp">
+                <div class="channel-card-content">
+                  <span class="channel-icon">💬</span>
+                  <div class="channel-info">
+                    <strong>Twilio WhatsApp</strong>
+                    <span>Official Twilio API</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="twilio_sms">
+                <div class="channel-card-content">
+                  <span class="channel-icon">✉️</span>
+                  <div class="channel-info">
+                    <strong>Direct SMS</strong>
+                    <span>Twilio Carrier SMS</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="telegram">
+                <div class="channel-card-content">
+                  <span class="channel-icon">✈️</span>
+                  <div class="channel-info">
+                    <strong>Telegram Bot</strong>
+                    <span>Mobile Telegram App</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="channel-card">
+                <input type="radio" name="channel_radio" value="simulation" checked>
+                <div class="channel-card-content">
+                  <span class="channel-icon">🧪</span>
+                  <div class="channel-info">
+                    <strong>Simulation Mode</strong>
+                    <span>Instant Local Preview</span>
+                  </div>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Dynamic Provider Setup Fields -->
+          <div id="provider-details-box" class="provider-details-box">
+            <!-- Injected via JavaScript based on chosen channel -->
+          </div>
+
+          <!-- Scheduling Timers -->
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-reminder-time" class="form-label">Daily Briefing Time</label>
+              <input type="time" id="input-reminder-time" class="form-control" value="07:30">
+              <small class="form-hint">Dispatches every morning</small>
+            </div>
+
+            <div class="form-group flex-1">
+              <label for="input-preclass-minutes" class="form-label">Pre-Class Alert</label>
+              <select id="input-preclass-minutes" class="form-control">
+                <option value="10">10 minutes before</option>
+                <option value="15" selected>15 minutes before</option>
+                <option value="30">30 minutes before</option>
+                <option value="0">Disabled</option>
+              </select>
+              <small class="form-hint">Upcoming lecture alert</small>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-save" id="btn-save-settings">
+            <span>💾 Save Settings &amp; Apply</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </aside>
+  <!-- ════════════════════════════════════════════════════════════════════ -->
+
+  <script src="/static/app.js?v=20260917-drawer"></script>
 </body>
 </html>

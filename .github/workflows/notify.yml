@@ -40,7 +40,7 @@ jobs:
             "daily_reminder_enabled": True,
             "daily_reminder_time": "07:00",
             "pre_class_reminder_enabled": True,
-            "pre_class_reminder_minutes": 15,
+            "pre_class_reminder_minutes": 30,
             "timezone": "Asia/Kolkata",
             "callmebot": {
               "phone": os.environ.get("CALLMEBOT_PHONE", ""),

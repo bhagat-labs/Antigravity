@@ -1,0 +1,39 @@
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Secrets / local config overrides — mount via Docker volume instead
+# config.json   # keep this comment; only uncomment if you store secrets here
+
+# Logs (runtime-generated, persisted via volume)
+reminder_logs.json
+
+# Windows helpers
+run_app.bat
+
+# Git
+.git/
+.gitignore
+
+# Tests (not needed in the image)
+test_app.py
