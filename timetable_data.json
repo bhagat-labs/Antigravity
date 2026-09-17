@@ -8,6 +8,7 @@
     "end24": "10:40",
     "subject": "Basic Engineering",
     "classType": "Lab",
+    "slot": "L3",
     "venue": "AB1-406C"
   },
   {
@@ -19,6 +20,7 @@
     "end24": "11:30",
     "subject": "Basic Engineering",
     "classType": "Lab",
+    "slot": "L4",
     "venue": "AB1-406C"
   },
   {
@@ -28,8 +30,9 @@
     "endTime": "02:50 PM",
     "start24": "14:00",
     "end24": "14:50",
-    "subject": "English",
+    "subject": "Technical English Communication",
     "classType": "Theory",
+    "slot": "A2 + TA2",
     "venue": "AB4-305"
   },
   {
@@ -41,17 +44,19 @@
     "end24": "16:40",
     "subject": "Engineering Physics",
     "classType": "Theory",
+    "slot": "D2 + TD2",
     "venue": "AB4-305"
   },
   {
     "id": "mon-5",
     "day": "Monday",
-    "startTime": "04:40 PM",
-    "endTime": "05:30 PM",
-    "start24": "16:40",
-    "end24": "17:30",
-    "subject": "Mathematics",
+    "startTime": "04:45 PM",
+    "endTime": "05:35 PM",
+    "start24": "16:45",
+    "end24": "17:35",
+    "subject": "Multivariable Calculus and Differential Equations",
     "classType": "Theory",
+    "slot": "B2 + TB2",
     "venue": "AB4-305"
   },
   {
@@ -61,19 +66,21 @@
     "endTime": "02:50 PM",
     "start24": "14:00",
     "end24": "14:50",
-    "subject": "Mathematics",
+    "subject": "Multivariable Calculus and Differential Equations",
     "classType": "Theory",
+    "slot": "B2 + TB2",
     "venue": "AB4-305"
   },
   {
     "id": "tue-2",
     "day": "Tuesday",
-    "startTime": "04:40 PM",
-    "endTime": "05:30 PM",
-    "start24": "16:40",
-    "end24": "17:30",
+    "startTime": "04:45 PM",
+    "endTime": "05:35 PM",
+    "start24": "16:45",
+    "end24": "17:35",
     "subject": "Basic Engineering",
     "classType": "Theory",
+    "slot": "C2 + TC2",
     "venue": "AB4-305"
   },
   {
@@ -85,6 +92,7 @@
     "end24": "18:30",
     "subject": "Engineering Physics",
     "classType": "Lab",
+    "slot": "L41",
     "venue": "AB1-202"
   },
   {
@@ -96,10 +104,35 @@
     "end24": "19:20",
     "subject": "Engineering Physics",
     "classType": "Lab",
+    "slot": "L42",
     "venue": "AB1-202"
   },
   {
     "id": "wed-1",
+    "day": "Wednesday",
+    "startTime": "08:00 AM",
+    "endTime": "08:50 AM",
+    "start24": "08:00",
+    "end24": "08:50",
+    "subject": "Problem Solving Using Python",
+    "classType": "Lab",
+    "slot": "L13 + L59",
+    "venue": "AB1-205B"
+  },
+  {
+    "id": "wed-2",
+    "day": "Wednesday",
+    "startTime": "08:50 AM",
+    "endTime": "09:40 AM",
+    "start24": "08:50",
+    "end24": "09:40",
+    "subject": "Problem Solving Using Python",
+    "classType": "Lab",
+    "slot": "L14 + L60",
+    "venue": "AB1-205B"
+  },
+  {
+    "id": "wed-3",
     "day": "Wednesday",
     "startTime": "02:00 PM",
     "endTime": "02:50 PM",
@@ -107,50 +140,55 @@
     "end24": "14:50",
     "subject": "Basic Engineering",
     "classType": "Theory",
+    "slot": "C2 + TC2",
     "venue": "AB4-305"
   },
   {
-    "id": "wed-2",
+    "id": "wed-4",
     "day": "Wednesday",
-    "startTime": "02:50 PM",
-    "endTime": "03:40 PM",
-    "start24": "14:50",
-    "end24": "15:40",
-    "subject": "English",
+    "startTime": "02:55 PM",
+    "endTime": "03:45 PM",
+    "start24": "14:55",
+    "end24": "15:45",
+    "subject": "Technical English Communication",
     "classType": "Theory",
+    "slot": "A2 + TA2",
     "venue": "AB4-305"
   },
   {
-    "id": "wed-3",
+    "id": "wed-5",
     "day": "Wednesday",
-    "startTime": "04:40 PM",
-    "endTime": "05:30 PM",
-    "start24": "16:40",
-    "end24": "17:30",
+    "startTime": "04:45 PM",
+    "endTime": "05:35 PM",
+    "start24": "16:45",
+    "end24": "17:35",
     "subject": "Engineering Physics",
     "classType": "Theory",
+    "slot": "D2 + TD2",
     "venue": "AB4-305"
   },
   {
     "id": "thu-1",
     "day": "Thursday",
-    "startTime": "10:40 AM",
-    "endTime": "11:30 AM",
-    "start24": "10:40",
-    "end24": "11:30",
-    "subject": "English",
+    "startTime": "09:50 AM",
+    "endTime": "10:40 AM",
+    "start24": "09:50",
+    "end24": "10:40",
+    "subject": "Technical English Communication",
     "classType": "Lab",
+    "slot": "L21",
     "venue": "AB1-405"
   },
   {
     "id": "thu-2",
     "day": "Thursday",
-    "startTime": "11:30 AM",
-    "endTime": "12:30 PM",
-    "start24": "11:30",
-    "end24": "12:30",
-    "subject": "English",
+    "startTime": "10:40 AM",
+    "endTime": "11:30 AM",
+    "start24": "10:40",
+    "end24": "11:30",
+    "subject": "Technical English Communication",
     "classType": "Lab",
+    "slot": "L22",
     "venue": "AB1-405"
   },
   {
@@ -162,61 +200,92 @@
     "end24": "14:50",
     "subject": "Engineering Physics",
     "classType": "Theory",
+    "slot": "D2 + TD2",
     "venue": "AB4-305"
   },
   {
     "id": "thu-4",
     "day": "Thursday",
-    "startTime": "02:50 PM",
-    "endTime": "03:40 PM",
-    "start24": "14:50",
-    "end24": "15:40",
-    "subject": "Mathematics",
+    "startTime": "02:55 PM",
+    "endTime": "03:45 PM",
+    "start24": "14:55",
+    "end24": "15:45",
+    "subject": "Multivariable Calculus and Differential Equations",
     "classType": "Theory",
+    "slot": "B2 + TB2",
     "venue": "AB4-305"
   },
   {
     "id": "fri-1",
     "day": "Friday",
-    "startTime": "02:50 PM",
-    "endTime": "03:40 PM",
-    "start24": "14:50",
-    "end24": "15:40",
-    "subject": "Basic Engineering",
-    "classType": "Theory",
-    "venue": "AB4-305"
+    "startTime": "08:00 AM",
+    "endTime": "08:50 AM",
+    "start24": "08:00",
+    "end24": "08:50",
+    "subject": "Multivariable Calculus and Differential Equations",
+    "classType": "Lab",
+    "slot": "L25",
+    "venue": "AB1-613"
   },
   {
     "id": "fri-2",
     "day": "Friday",
-    "startTime": "03:40 PM",
-    "endTime": "04:30 PM",
-    "start24": "15:40",
-    "end24": "16:30",
-    "subject": "English",
-    "classType": "Theory",
-    "venue": "AB4-305"
+    "startTime": "08:50 AM",
+    "endTime": "09:40 AM",
+    "start24": "08:50",
+    "end24": "09:40",
+    "subject": "Multivariable Calculus and Differential Equations",
+    "classType": "Lab",
+    "slot": "L26",
+    "venue": "AB1-613"
   },
   {
     "id": "fri-3",
+    "day": "Friday",
+    "startTime": "02:55 PM",
+    "endTime": "03:45 PM",
+    "start24": "14:55",
+    "end24": "15:45",
+    "subject": "Basic Engineering",
+    "classType": "Theory",
+    "slot": "C2 + TC2",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "fri-4",
+    "day": "Friday",
+    "startTime": "03:50 PM",
+    "endTime": "04:40 PM",
+    "start24": "15:50",
+    "end24": "16:40",
+    "subject": "Technical English Communication",
+    "classType": "Theory",
+    "slot": "A2 + TA2",
+    "venue": "AB4-305"
+  },
+  {
+    "id": "fri-5",
     "day": "Friday",
     "startTime": "05:40 PM",
     "endTime": "06:30 PM",
     "start24": "17:40",
     "end24": "18:30",
-    "subject": "Basic Engineering",
+    "subject": "Problem Solving Using Python",
     "classType": "Lab",
-    "venue": "AB1-613"
+    "slot": "L13 + L59",
+    "venue": "AB1-205B"
   },
   {
-    "id": "fri-4",
+    "id": "fri-6",
     "day": "Friday",
     "startTime": "06:30 PM",
     "endTime": "07:20 PM",
     "start24": "18:30",
     "end24": "19:20",
-    "subject": "Basic Engineering",
+    "subject": "Problem Solving Using Python",
     "classType": "Lab",
-    "venue": "AB1-613"
+    "slot": "L14 + L60",
+    "venue": "AB1-205B"
   }
 ]
+
