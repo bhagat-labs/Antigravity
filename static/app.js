@@ -582,6 +582,39 @@ function setupEventListeners() {
     form.addEventListener("submit", handleSaveSettings);
   }
 
+  // Mobile reminder settings drawer
+  const settingsDrawer = document.getElementById("settings-drawer");
+  const settingsTab = document.getElementById("settings-drawer-tab");
+  const settingsBackdrop = document.getElementById("settings-backdrop");
+  const settingsClose = document.getElementById("drawer-close-btn");
+
+  const setSettingsDrawerOpen = (isOpen) => {
+    if (!settingsDrawer || !settingsTab) return;
+
+    settingsDrawer.classList.toggle("is-open", isOpen);
+    settingsBackdrop?.classList.toggle("is-open", isOpen);
+    settingsTab.classList.toggle("drawer-open", isOpen);
+    settingsTab.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("settings-drawer-open", isOpen);
+
+    if (isOpen) {
+      settingsClose?.focus();
+    } else {
+      settingsTab.focus();
+    }
+  };
+
+  settingsTab?.addEventListener("click", () => {
+    setSettingsDrawerOpen(!settingsDrawer?.classList.contains("is-open"));
+  });
+  settingsClose?.addEventListener("click", () => setSettingsDrawerOpen(false));
+  settingsBackdrop?.addEventListener("click", () => setSettingsDrawerOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && settingsDrawer?.classList.contains("is-open")) {
+      setSettingsDrawerOpen(false);
+    }
+  });
+
   // Send Now Hero Button
   const btnSendNow = document.getElementById("btn-send-now");
   if (btnSendNow) {

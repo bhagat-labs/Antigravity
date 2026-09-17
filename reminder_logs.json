@@ -1,5 +1,15 @@
 [
   {
+    "timestamp": "2026-09-17 14:34:20",
+    "status": "SUCCESS",
+    "channel": "ntfy_push",
+    "recipient": "+919902952436",
+    "type": "pre_class_thu-4",
+    "preview": "\ud83d\udd14 *UPCOMING CLASS ALERT (15 mins)*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u23f0 Time: *02:50 PM \u2013 03:40 PM*\n\ud83d\udcda Subject: *Mathematics* (\ud83d\udcdd Theory)\n\ud83d\udccd Venue: *AB4-305*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501...",
+    "full_message": "\ud83d\udd14 *UPCOMING CLASS ALERT (15 mins)*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u23f0 Time: *02:50 PM \u2013 03:40 PM*\n\ud83d\udcda Subject: *Mathematics* (\ud83d\udcdd Theory)\n\ud83d\udccd Venue: *AB4-305*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nHead to AB4-305 now so you arrive on time! \ud83c\udfc3\u200d\u2642\ufe0f\ud83d\udca8",
+    "error": null
+  },
+  {
     "timestamp": "2026-09-17 13:44:20",
     "status": "SUCCESS",
     "channel": "ntfy_push",
