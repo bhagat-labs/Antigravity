@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/static/style.css?v=20260917-drawer">
+  <link rel="stylesheet" href="/static/style.css?v=20260918-marks">
 </head>
 <body>
   <!-- Background Glow Accents -->
@@ -36,6 +36,10 @@
       </div>
 
       <div class="header-actions">
+        <nav class="top-nav" aria-label="Main sections">
+          <button class="top-nav-tab active" id="tab-timetable" type="button">📅 Timetable</button>
+          <button class="top-nav-tab" id="tab-marks" type="button">📊 Marks</button>
+        </nav>
         <!-- Live Campus Clock -->
         <div class="live-clock-card" id="live-clock-card" title="Local Campus Time">
           <span class="clock-icon">🕒</span>
@@ -64,6 +68,19 @@
 
     <!-- Main Content Grid -->
     <main class="main-layout">
+      <section class="marks-section glass-panel" id="marks-section" hidden>
+        <div class="section-header marks-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Semester Marks</h2>
+            <p class="section-subtitle">Record total marks and assessment scores for every subject.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-add-semester" type="button">＋ Add Semester</button>
+        </div>
+        <div id="marks-semesters-container"></div>
+        <div class="marks-footer">
+          <button class="btn btn-save" id="btn-save-marks" type="button">💾 Save Marks</button>
+        </div>
+      </section>
       
       <!-- Top Hero Section: Today's Spotlight & Quick Trigger -->
       <section class="hero-section" id="hero-section">
@@ -98,6 +115,23 @@
               <span class="btn-icon">🚀</span>
               <span class="btn-text">Send Today's Timetable to Mobile</span>
             </button>
+
+            <div class="send-day-hero-control">
+              <label for="send-day-select" class="send-day-label">Send another day</label>
+              <div class="send-day-hero-row">
+                <select id="send-day-select" class="form-control send-day-select">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                </select>
+                <button class="btn btn-secondary send-day-button" id="btn-send-selected-day" title="Send the selected day's timetable to your mobile">
+                  <span class="btn-icon">📤</span>
+                  <span>Send Selected Day</span>
+                </button>
+              </div>
+            </div>
             
             <button class="btn btn-secondary" id="btn-preview-phone">
               <span class="btn-icon">📱</span>
@@ -144,11 +178,6 @@
               </button>
             </div>
 
-            <div class="day-action-group">
-              <button class="btn-text-action" id="btn-send-selected-day" title="Send this specific day's timetable to your mobile">
-                📤 Dispatch Selected Day
-              </button>
-            </div>
           </div>
 
           <!-- Schedule Cards Container -->
@@ -243,6 +272,49 @@
   <!-- ══ Sliding Settings Drawer ══════════════════════════════════════════ -->
   <!-- Backdrop -->
   <div class="settings-backdrop" id="settings-backdrop"></div>
+
+  <!-- Timetable import drawer -->
+  <button class="timetable-drawer-tab" id="timetable-drawer-tab" aria-label="Open timetable import" aria-expanded="false" aria-controls="timetable-drawer">
+    <span class="drawer-tab-icon">📊</span>
+    <span class="drawer-tab-label">Timetable</span>
+  </button>
+
+  <aside class="timetable-drawer glass-panel" id="timetable-drawer" role="dialog" aria-label="Timetable import" aria-modal="true">
+    <div class="drawer-inner">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <span class="drawer-icon-badge timetable-icon-badge">📊</span>
+          <div>
+            <h2 class="drawer-title">Import Timetable</h2>
+            <p class="drawer-subtitle">Load your weekly schedule from CSV or TSV</p>
+          </div>
+        </div>
+        <button class="drawer-close-btn" id="timetable-close-btn" aria-label="Close timetable import"><span>✕</span></button>
+      </div>
+
+      <div class="drawer-body">
+        <form id="timetable-import-form" class="settings-form">
+          <div class="form-group">
+            <label for="timetable-file-input" class="form-label">Choose a file</label>
+            <input type="file" id="timetable-file-input" class="form-control" accept=".csv,.tsv,text/csv,text/tab-separated-values">
+            <small class="form-hint">CSV and tab-separated files are detected automatically.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="timetable-text-input" class="form-label">Timetable data</label>
+            <textarea id="timetable-text-input" class="form-control timetable-text-input" rows="12" placeholder="day,subject,startTime,endTime,classType,venue
+Monday,Mathematics,08:00 AM,09:00 AM,Theory,AB1-406C"></textarea>
+            <small class="form-hint">Required columns: day, subject, startTime, endTime, classType, venue.</small>
+          </div>
+
+          <div class="import-preview" id="timetable-import-preview" aria-live="polite">No timetable data loaded.</div>
+          <button type="submit" class="btn btn-save" id="btn-import-timetable">
+            <span>📥 Import &amp; Apply Timetable</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </aside>
 
   <!-- Tab handle (always visible on the right edge) -->
   <button class="settings-drawer-tab" id="settings-drawer-tab" aria-label="Open Mobile Reminder Settings" aria-expanded="false" aria-controls="settings-drawer">
@@ -398,6 +470,6 @@
   </aside>
   <!-- ════════════════════════════════════════════════════════════════════ -->
 
-  <script src="/static/app.js?v=20260917-drawer"></script>
+  <script src="/static/app.js?v=20260918-marks"></script>
 </body>
 </html>

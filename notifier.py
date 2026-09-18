@@ -2,6 +2,9 @@ import os
 import json
 import urllib.parse
 import datetime
+import csv
+import io
+import re
 import requests
 from typing import Dict, Any, List, Optional
 
@@ -9,18 +12,160 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TIMETABLE_FILE = os.path.join(BASE_DIR, "timetable_data.json")
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
 LOGS_FILE = os.path.join(BASE_DIR, "reminder_logs.json")
+MARKS_FILE = os.path.join(BASE_DIR, "marks_data.json")
 
 
 def load_timetable() -> List[Dict[str, Any]]:
     if not os.path.exists(TIMETABLE_FILE):
         return []
     with open(TIMETABLE_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+        timetable = json.load(f)
+
+    # Repair spreadsheet imports that used blank cells for repeated days.
+    current_day = ""
+    repaired = []
+    for item in timetable:
+        normalized = dict(item)
+        if normalized.get("day", "").strip():
+            current_day = normalized["day"].strip().capitalize()
+        elif current_day:
+            normalized["day"] = current_day
+        repaired.append(normalized)
+    return repaired
 
 
 def save_timetable(data: List[Dict[str, Any]]) -> None:
     with open(TIMETABLE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
+
+
+def load_marks() -> Dict[str, Any]:
+    if not os.path.exists(MARKS_FILE):
+        return {"semesters": []}
+    try:
+        with open(MARKS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return {"semesters": data.get("semesters", [])}
+    except Exception:
+        return {"semesters": []}
+
+
+def save_marks(data: Dict[str, Any]) -> None:
+    semesters = data.get("semesters", [])
+    if not isinstance(semesters, list):
+        raise ValueError("semesters must be a list")
+    with open(MARKS_FILE, "w", encoding="utf-8") as f:
+        json.dump({"semesters": semesters}, f, indent=2)
+
+
+def parse_csv_timetable(raw_content: str) -> List[Dict[str, Any]]:
+    """Parses raw CSV or TSV content into standard timetable session dictionaries."""
+    cleaned_content = raw_content.strip()
+    if not cleaned_content:
+        return []
+    
+    f = io.StringIO(cleaned_content)
+    # Auto-detect delimiter (comma for CSV, tab for TSV)
+    try:
+        sample = f.read(2048)
+        f.seek(0)
+        dialect = csv.Sniffer().sniff(sample)
+        delimiter = dialect.delimiter
+    except Exception:
+        delimiter = ',' if ',' in cleaned_content else '\t'
+        
+    reader = csv.DictReader(f, delimiter=delimiter)
+    timetable = []
+    
+    current_day = "Monday"
+    for idx, row in enumerate(reader):
+        norm_row = {
+            re.sub(r"[^a-z0-9]", "", str(k).strip().lower()): (v or "").strip()
+            for k, v in row.items() if k
+        }
+
+        # Spreadsheet exports usually leave repeated day cells blank.
+        day = norm_row.get("day") or current_day
+        current_day = day.capitalize()
+
+        raw_time = norm_row.get("time") or norm_row.get("starttime") or norm_row.get("start_time")
+        start_time, end_time = _parse_time_range(raw_time)
+        start24 = norm_row.get("start24") or norm_row.get("start_24")
+
+        if not start24:
+            start24 = _time_to_24(start_time) or "08:00"
+
+        subject = norm_row.get("subject") or norm_row.get("course") or "Untitled Course"
+        raw_type = norm_row.get("classtype") or norm_row.get("classname") or norm_row.get("type") or "Theory"
+        slots = norm_row.get("slots") or norm_row.get("slot") or ""
+        class_type = _normalize_class_type(raw_type, slots)
+        venue = norm_row.get("venue") or norm_row.get("room") or "TBD"
+
+        if not end_time:
+            duration = 100 if re.search(r"\bL\d+\b", slots, re.IGNORECASE) else 50
+            end24 = _add_minutes(start24, duration)
+            end_time = _format_time(end24)
+        else:
+            end24 = _time_to_24(end_time) or _add_minutes(start24, 50)
+        
+        item = {
+            "id": f"text_{idx+1}",
+            "day": current_day,
+            "startTime": start_time,
+            "endTime": end_time,
+            "start24": start24,
+            "end24": end24,
+            "subject": subject,
+            "classType": class_type,
+            "venue": venue
+        }
+        timetable.append(item)
+    return timetable
+
+
+def _time_to_24(value: str) -> Optional[str]:
+    """Convert common 12/24-hour timetable values to HH:MM."""
+    if not value:
+        return None
+    cleaned = value.strip().upper().replace(".", "")
+    match = re.search(r"(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?", cleaned)
+    if not match:
+        return None
+    hour = int(match.group(1))
+    minute = int(match.group(2) or "00")
+    meridiem = match.group(3)
+    if meridiem == "PM" and hour < 12:
+        hour += 12
+    elif meridiem == "AM" and hour == 12:
+        hour = 0
+    if hour > 23 or minute > 59:
+        return None
+    return f"{hour:02d}:{minute:02d}"
+
+
+def _parse_time_range(value: str) -> tuple[str, str]:
+    """Return display start/end values when a cell contains a time range."""
+    if not value:
+        return "08:00 AM", ""
+    parts = re.split(r"\s+(?:-|to)\s+", value.strip(), maxsplit=1, flags=re.IGNORECASE)
+    return parts[0].strip(), parts[1].strip() if len(parts) == 2 else ""
+
+
+def _add_minutes(start24: str, minutes: int) -> str:
+    start = datetime.datetime.strptime(start24, "%H:%M")
+    return (start + datetime.timedelta(minutes=minutes)).strftime("%H:%M")
+
+
+def _format_time(value24: str) -> str:
+    return datetime.datetime.strptime(value24, "%H:%M").strftime("%I:%M %p")
+
+
+def _normalize_class_type(raw_type: str, slots: str) -> str:
+    """Map common timetable abbreviations to the UI's Lab/Theory values."""
+    value = raw_type.strip().lower()
+    if value in {"lab", "labs", "lo", "ela"} or re.search(r"\bL\d+\b", slots, re.IGNORECASE):
+        return "Lab"
+    return "Theory"
 
 
 def load_config() -> Dict[str, Any]:
@@ -70,7 +215,6 @@ def log_event(status: str, channel: str, recipient: str, message_type: str, prev
         "error": error
     }
     logs.insert(0, entry)
-    # keep last 100 entries
     logs = logs[:100]
     with open(LOGS_FILE, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2)
@@ -80,7 +224,6 @@ def club_continuous_labs(classes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     if not classes:
         return []
     
-    # Sort chronologically by start24
     sorted_classes = sorted(classes, key=lambda x: x.get("start24", "00:00"))
     clubbed = []
     i = 0
@@ -88,7 +231,6 @@ def club_continuous_labs(classes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         curr = dict(sorted_classes[i])
         is_curr_lab = curr.get("classType", "").strip().lower() == "lab"
         
-        # Check if next class is continuous lab of the same subject & venue
         if is_curr_lab and (i + 1) < len(sorted_classes):
             nxt = sorted_classes[i + 1]
             is_nxt_lab = nxt.get("classType", "").strip().lower() == "lab"
@@ -97,7 +239,6 @@ def club_continuous_labs(classes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             continuous_time = (curr.get("end24") == nxt.get("start24") or curr.get("endTime") == nxt.get("startTime"))
             
             if is_nxt_lab and same_subject and same_venue and continuous_time:
-                # Merge 2 continuous lab periods into one combined block
                 base_subj = curr.get("subject", "").strip()
                 lab_title = base_subj if base_subj.lower().endswith("lab") else f"{base_subj} Lab"
                 merged = {
@@ -118,7 +259,6 @@ def club_continuous_labs(classes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 i += 2
                 continue
         
-        # Single period (or non-lab)
         base_subj = curr.get("subject", "").strip()
         if is_curr_lab and not base_subj.lower().endswith("lab"):
             curr["subject"] = f"{base_subj} Lab"
@@ -199,13 +339,10 @@ def format_class_reminder(class_item: Dict[str, Any], minutes_before: int = 15) 
     )
 
 
-# --- Sender Drivers ---
-
 def send_via_callmebot(phone: str, api_key: str, message: str) -> Dict[str, Any]:
     if not phone or not api_key:
         raise ValueError("CallMeBot requires phone number and API key.")
     
-    # Strip any leading '+' or spaces
     clean_phone = phone.replace("+", "").replace(" ", "").replace("-", "")
     encoded_text = urllib.parse.quote(message.encode("utf-8"))
     url = f"https://api.callmebot.com/whatsapp.php?phone={clean_phone}&text={encoded_text}&apikey={api_key}"
@@ -224,7 +361,6 @@ def send_via_ntfy(topic: str, server: str, message: str, title: str = "CampusBel
     server_url = server.rstrip("/") if server else "https://ntfy.sh"
     post_url = f"{server_url}/{topic}"
     
-    # HTTP headers in Python's http.client require ASCII/latin-1. Strip non-ASCII from header:
     safe_title = "".join(ch for ch in title if ord(ch) < 128).strip() or "CampusBell Timetable"
     headers = {
         "Title": safe_title,
@@ -279,8 +415,6 @@ def send_via_telegram(bot_token: str, chat_id: str, message: str) -> Dict[str, A
     else:
         raise RuntimeError(f"Telegram error: {data.get('description', 'Unknown error')}")
 
-
-# --- Central Notification Dispatcher ---
 
 def dispatch_notification(
     message: str,
