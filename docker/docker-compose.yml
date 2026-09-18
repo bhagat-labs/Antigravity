@@ -1,7 +1,6 @@
-version: "3.9"
-
 services:
   campusbell:
+    image: bhagatsinghs/campusbell:latest
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -10,17 +9,17 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      # Persist user data outside the container
-      - campusbell_data:/app/data
+      # Persist the files used directly by notifier.py outside the container
+      - ../timetable_data.json:/app/timetable_data.json
+      - ../config.json:/app/config.json
+      - ../reminder_logs.json:/app/reminder_logs.json
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=utf-8
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/status')"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health-ping')"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 15s
 
-volumes:
-  campusbell_data:

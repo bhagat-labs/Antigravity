@@ -27,18 +27,8 @@ WORKDIR /app
 # Copy installed packages from builder
 COPY --from=builder /install /usr/local
 
-# Copy application source
-COPY --chown=appuser:appuser app.py       ./app.py
-COPY --chown=appuser:appuser notifier.py  ./notifier.py
-COPY --chown=appuser:appuser scheduler.py ./scheduler.py
-COPY --chown=appuser:appuser static/      ./static/
-
-# Copy default data files (they will be overridden by Docker volume mounts in prod)
-COPY --chown=appuser:appuser timetable_data.json ./timetable_data.json
-COPY --chown=appuser:appuser config.json          ./config.json
-
-# Create log file with correct ownership so the app can write to it
-RUN touch /app/reminder_logs.json && chown appuser:appuser /app/reminder_logs.json
+# Copy the complete project (excluding repository and build metadata via .dockerignore)
+COPY --chown=appuser:appuser . .
 
 # Environment
 ENV PYTHONUNBUFFERED=1 \
