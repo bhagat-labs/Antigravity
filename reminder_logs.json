@@ -1,164 +1,22 @@
 [
   {
-  {
-    "timestamp": "2026-09-17 14:34:20",
+    "timestamp": "2026-09-18 14:39:14",
     "status": "SUCCESS",
     "channel": "ntfy_push",
     "recipient": "+919902952436",
-    "type": "pre_class_thu-4",
-    "preview": "\\ud83d\\udd14 *UPCOMING CLASS ALERT (15 mins)*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\n\\u23f0 Time: *02:50 PM \\u2013 03:40 PM*\\n\\ud83d\\udcda Subject: *Mathematics* (\\ud83d\\udcdd Theory)\\n\\ud83d\\udccd Venue: *AB4-305*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501...",
-    "full_message": "\\ud83d\\udd14 *UPCOMING CLASS ALERT (15 mins)*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\n\\u23f0 Time: *02:50 PM \\u2013 03:40 PM*\\n\\ud83d\\udcda Subject: *Mathematics* (\\ud83d\\udcdd Theory)\\n\\ud83d\\udccd Venue: *AB4-305*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\nHead to AB4-305 now so you arrive on time! \\ud83c\\udfc3\\u200d\\u2642\\ufe0f\\ud83d\\udca8",
+    "type": "pre_class_fri-3",
+    "preview": "\ud83d\udd14 *UPCOMING CLASS ALERT (15 mins)*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u23f0 Time: *02:55 PM \u2013 03:45 PM*\n\ud83d\udcda Subject: *Basic Engineering* (\ud83d\udcdd Theory)\n\ud83d\udccd Venue: *AB4-305*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501...",
+    "full_message": "\ud83d\udd14 *UPCOMING CLASS ALERT (15 mins)*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u23f0 Time: *02:55 PM \u2013 03:45 PM*\n\ud83d\udcda Subject: *Basic Engineering* (\ud83d\udcdd Theory)\n\ud83d\udccd Venue: *AB4-305*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nHead to AB4-305 now so you arrive on time! \ud83c\udfc3\u200d\u2642\ufe0f\ud83d\udca8",
     "error": null
   },
   {
-    "timestamp": "2026-09-16 22:24:14",
+    "timestamp": "2026-09-18 12:39:21",
     "status": "SUCCESS",
     "channel": "ntfy_push",
     "recipient": "+919902952436",
     "type": "manual_send",
-    "preview": "\\ud83c\\udf93 *DAILY CLASS TIMETABLE*\\n\\ud83d\\udcc5 *Monday \\u2022 16 Sep 2026*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\nGood morning! You have *4 sessions* scheduled today:\\n\\n1\\ufe0f\\u20e3 \\u23f0 *09:50 AM \\u2013 11:30 AM*\\n   \\ud83d\\udd2c *...",
-    "full_message": "\\ud83c\\udf93 *DAILY CLASS TIMETABLE*\\n\\ud83d\\udcc5 *Monday \\u2022 16 Sep 2026*\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\nGood morning! You have *4 sessions* scheduled today:\\n\\n1\\ufe0f\\u20e3 \\u23f0 *09:50 AM \\u2013 11:30 AM*\\n   \\ud83d\\udd2c *Basic Engineering Lab* (\\ud83d\\udd2c 2-Period Lab)\\n   \\ud83d\\udccd *Venue:* AB1-406C\\n\\n2\\ufe0f\\u20e3 \\u23f0 *02:00 PM \\u2013 02:50 PM*\\n   \\ud83d\\udcda *Technical English Communication* (\\ud83d\\udcdd Theory)\\n   \\ud83d\\udccd *Venue:* AB4-305\\n\\n3\\ufe0f\\u20e3 \\u23f0 *03:50 PM \\u2013 04:40 PM*\\n   \\ud83d\\udcda *Engineering Physics* (\\ud83d\\udcdd Theory)\\n   \\ud83d\\udccd *Venue:* AB4-305\\n\\n4\\ufe0f\\u20e3 \\u23f0 *04:45 PM \\u2013 05:35 PM*\\n   \\ud83d\\udcda *Multivariable Calculus and Differential Equations* (\\ud83d\\udcdd Theory)\\n   \\ud83d\\udccd *Venue:* AB4-305\\n\\n\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\n\\ud83d\\udca1 *Tip:* Check your labs/materials before heading out.\\nHave an inspiring and productive day! \\ud83d\\ude80"
-  }
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 20:47:58",
-    "status": "SUCCESS",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   ...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *English* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 20:37:59",
-    "status": "SUCCESS",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 12:30 PM*\n   \ud83d\udd2c...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 12:30 PM*\n   \ud83d\udd2c *English Lab* (\ud83d\udd2c 2-Period Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n2\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 20:37:18",
-    "status": "SUCCESS",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda ...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *05:40 PM \u2013 07:20 PM*\n   \ud83d\udd2c *Engineering Physics Lab* (\ud83d\udd2c 2-Period Lab)\n   \ud83d\udccd *Venue:* AB1-202\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 20:32:28",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *English* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 20:29:49",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *05:40 PM \u2013 06:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-202\n\n4\ufe0f\u20e3 \u23f0 *06:30 PM \u2013 07:20 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-202\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 20:23:46",
-    "status": "SUCCESS",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "test",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 12:30 PM*\n   \ud83d\udd2c...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 12:30 PM*\n   \ud83d\udd2c *English Lab* (\ud83d\udd2c 2-Period Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n2\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 20:23:39",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda ...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n2\ufe0f\u20e3 \u23f0 *11:30 AM \u2013 12:30 PM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n3\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n4\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 20:21:00",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "daily_scheduled",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *English* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 20:20:35",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda ...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n2\ufe0f\u20e3 \u23f0 *11:30 AM \u2013 12:30 PM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n3\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n4\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 20:20:26",
-    "status": "FAILED",
-    "channel": "ntfy_push",
-    "recipient": "+919902952436",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda ...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Thursday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *10:40 AM \u2013 11:30 AM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n2\ufe0f\u20e3 \u23f0 *11:30 AM \u2013 12:30 PM*\n   \ud83d\udcda *English* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-405\n\n3\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n4\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": "'latin-1' codec can't encode character '\\U0001f393' in position 0: ordinal not in range(256)"
-  },
-  {
-    "timestamp": "2026-09-16 19:55:38",
-    "status": "SUCCESS",
-    "channel": "simulation",
-    "recipient": "+919876543210",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *English* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 19:53:55",
-    "status": "SUCCESS",
-    "channel": "simulation",
-    "recipient": "+919876543210",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Tuesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Mathematics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *05:40 PM \u2013 06:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-202\n\n4\ufe0f\u20e3 \u23f0 *06:30 PM \u2013 07:20 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udd2c Lab)\n   \ud83d\udccd *Venue:* AB1-202\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 19:52:29",
-    "status": "SUCCESS",
-    "channel": "simulation",
-    "recipient": "+919876543210",
-    "type": "manual_send",
-    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda...",
-    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Wednesday \u2022 16 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *3 classes* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *02:00 PM \u2013 02:50 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n2\ufe0f\u20e3 \u23f0 *02:50 PM \u2013 03:40 PM*\n   \ud83d\udcda *English* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *04:40 PM \u2013 05:30 PM*\n   \ud83d\udcda *Engineering Physics* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
-    "error": null
-  },
-  {
-    "timestamp": "2026-09-16 19:49:08",
-    "status": "SUCCESS",
-    "channel": "simulation",
-    "recipient": "+919876543210",
-    "type": "test",
-    "preview": "Test msg",
-    "full_message": "Test msg",
+    "preview": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Friday \u2022 18 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *08:00 AM \u2013 09:40 AM*\n   \ud83d\udd2c *...",
+    "full_message": "\ud83c\udf93 *DAILY CLASS TIMETABLE*\n\ud83d\udcc5 *Friday \u2022 18 Sep 2026*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nGood morning! You have *4 sessions* scheduled today:\n\n1\ufe0f\u20e3 \u23f0 *08:00 AM \u2013 09:40 AM*\n   \ud83d\udd2c *Multivariable Calculus and Differential Equations Lab* (\ud83d\udd2c 2-Period Lab)\n   \ud83d\udccd *Venue:* AB1-613\n\n2\ufe0f\u20e3 \u23f0 *02:55 PM \u2013 03:45 PM*\n   \ud83d\udcda *Basic Engineering* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n3\ufe0f\u20e3 \u23f0 *03:50 PM \u2013 04:40 PM*\n   \ud83d\udcda *Technical English Communication* (\ud83d\udcdd Theory)\n   \ud83d\udccd *Venue:* AB4-305\n\n4\ufe0f\u20e3 \u23f0 *05:40 PM \u2013 07:20 PM*\n   \ud83d\udd2c *Problem Solving Using Python Lab* (\ud83d\udd2c 2-Period Lab)\n   \ud83d\udccd *Venue:* AB1-205B\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udca1 *Tip:* Check your labs/materials before heading out.\nHave an inspiring and productive day! \ud83d\ude80",
     "error": null
   }
 ]
