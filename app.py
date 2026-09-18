@@ -165,19 +165,7 @@ async def get_logs_endpoint():
 def health_ping():
     return {"status": "ok", "ping": "active"}
 
-from fastapi import FastAPI
 from mangum import Mangum
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"status": "online", "message": "CampusBell manual mode ready"}
-
-@app.get("/api/send-now")
-def manual_trigger():
-    # Place your notification logic/script execution here
-    return {"success": True, "message": "Notification dispatched manually!"}
 
 # This handler allows Netlify to route requests into FastAPI
 handler = Mangum(app)
