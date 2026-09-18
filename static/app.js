@@ -13,6 +13,7 @@ const state = {
   selectedDay: "Wednesday",
   activeFilter: "all",
   config: {},
+  marks: { semesters: [] },
   scheduler: {
     is_running: true,
     next_daily_run: null
@@ -22,12 +23,14 @@ const state = {
 
 // Days of the week in academic order
 const WEEK_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const TIMETABLE_DRAFT_KEY = "campusbell_timetable_import_draft";
 
 // DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initClock();
   setupEventListeners();
+  restoreTimetableDraft();
   loadData();
 });
 
@@ -182,10 +185,11 @@ function updateSpotlightCountdown(now) {
 // Fetch Initial Data
 async function loadData() {
   try {
-    const [timetableRes, statusRes, configRes] = await Promise.all([
+    const [timetableRes, statusRes, configRes, marksRes] = await Promise.all([
       fetch("/api/timetable").then(r => r.json()),
       fetch("/api/status").then(r => r.json()),
-      fetch("/api/config").then(r => r.json())
+      fetch("/api/config").then(r => r.json()),
+      fetch("/api/marks").then(r => r.json())
     ]);
 
     state.timetable = timetableRes.timetable || [];
@@ -193,6 +197,7 @@ async function loadData() {
     state.clubbedByDay = timetableRes.clubbed_by_day || timetableRes.by_day || {};
     state.clubbedTimetable = timetableRes.clubbed_timetable || timetableRes.timetable || [];
     state.config = configRes || {};
+    state.marks = marksRes || { semesters: [] };
     state.scheduler = statusRes.scheduler || {};
     state.logs = statusRes.recent_logs || [];
 
@@ -210,6 +215,7 @@ async function loadData() {
     renderConfigForm();
     renderLogs();
     updatePhonePreview(state.selectedDay);
+    renderMarks();
 
   } catch (error) {
     console.error("Failed to load initial app data:", error);
@@ -269,6 +275,20 @@ function renderDayTabs() {
       btn.classList.remove("active");
     }
   });
+
+  const sendDaySelect = document.getElementById("send-day-select");
+  if (sendDaySelect && WEEK_DAYS.includes(state.selectedDay)) {
+    sendDaySelect.value = state.selectedDay;
+  }
+  updateSendDayButton();
+}
+
+function updateSendDayButton() {
+  const button = document.getElementById("btn-send-selected-day");
+  const select = document.getElementById("send-day-select");
+  if (button && select) {
+    button.innerHTML = `<span class="btn-icon">📤</span><span>Send ${select.value} Timetable</span>`;
+  }
 }
 
 // Render Timetable Cards
@@ -367,6 +387,94 @@ function renderConfigForm() {
   if (radio) radio.checked = true;
 
   renderProviderDetails(channel);
+}
+
+function renderMarks() {
+  const container = document.getElementById("marks-semesters-container");
+  if (!container) return;
+
+  if (!state.marks.semesters.length) {
+    container.innerHTML = `<div class="marks-empty-state">No semesters added yet. Add a semester to start entering marks.</div>`;
+    return;
+  }
+
+  container.innerHTML = state.marks.semesters.map((semester, semesterIndex) => `
+    <article class="semester-card" data-semester-index="${semesterIndex}">
+      <div class="semester-card-header">
+        <input class="semester-name-input form-control" data-field="semester-name" value="${escapeHtml(semester.name || `Semester ${semesterIndex + 1}`)}" placeholder="Semester name">
+        <button class="icon-action danger" type="button" data-action="remove-semester" title="Remove semester" aria-label="Remove semester">✕</button>
+      </div>
+      <div class="marks-table-wrap">
+        <table class="marks-table">
+          <thead><tr><th>Subject</th><th>Total Marks</th><th>Cat1</th><th>Cat2</th><th>FAT</th><th></th></tr></thead>
+          <tbody>
+            ${(semester.subjects || []).map((subject, subjectIndex) => `
+              <tr data-subject-index="${subjectIndex}">
+                <td><input class="form-control" data-field="subject" value="${escapeHtml(subject.name || "")}" placeholder="Subject name"></td>
+                <td><input class="form-control marks-number" data-field="total" type="number" min="0" value="${subject.total ?? ""}" placeholder="100"></td>
+                <td><input class="form-control marks-number" data-field="cat1" type="number" min="0" value="${subject.cat1 ?? ""}" placeholder="-" ></td>
+                <td><input class="form-control marks-number" data-field="cat2" type="number" min="0" value="${subject.cat2 ?? ""}" placeholder="-" ></td>
+                <td><input class="form-control marks-number" data-field="fat" type="number" min="0" value="${subject.fat ?? ""}" placeholder="-" ></td>
+                <td><button class="icon-action danger" type="button" data-action="remove-subject" title="Remove subject" aria-label="Remove subject">✕</button></td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+      <button class="btn-text-action add-subject-btn" type="button" data-action="add-subject">＋ Add Subject</button>
+    </article>
+  `).join("");
+}
+
+function addSemester() {
+  state.marks.semesters.push({ name: `Semester ${state.marks.semesters.length + 1}`, subjects: [{ name: "", total: "", cat1: "", cat2: "", fat: "" }] });
+  renderMarks();
+}
+
+function collectMarksFromForm() {
+  return [...document.querySelectorAll(".semester-card")].map((card, semesterIndex) => ({
+    name: card.querySelector('[data-field="semester-name"]')?.value.trim() || `Semester ${semesterIndex + 1}`,
+    subjects: [...card.querySelectorAll("tbody tr")].map(row => ({
+      name: row.querySelector('[data-field="subject"]')?.value.trim() || "",
+      total: row.querySelector('[data-field="total"]')?.value || "",
+      cat1: row.querySelector('[data-field="cat1"]')?.value || "",
+      cat2: row.querySelector('[data-field="cat2"]')?.value || "",
+      fat: row.querySelector('[data-field="fat"]')?.value || ""
+    }))
+  }));
+}
+
+async function saveMarks() {
+  const button = document.getElementById("btn-save-marks");
+  const semesters = collectMarksFromForm();
+  if (semesters.some(semester => !semester.name || semester.subjects.some(subject => !subject.name))) {
+    showToast("Enter a name for every semester and subject.", "error");
+    return;
+  }
+  if (button) button.disabled = true;
+  try {
+    const response = await fetch("/api/marks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ semesters })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) throw new Error(result.detail || "Marks could not be saved.");
+    state.marks = { semesters };
+    showToast("Marks saved successfully.");
+  } catch (error) {
+    showToast(error.message || "Network error while saving marks.", "error");
+  } finally {
+    if (button) button.disabled = false;
+  }
+}
+
+function setActiveSection(section) {
+  const marksVisible = section === "marks";
+  document.getElementById("marks-section")?.toggleAttribute("hidden", !marksVisible);
+  ["hero-section", "timetable-section", "logs-section"].forEach(id => document.getElementById(id)?.toggleAttribute("hidden", marksVisible));
+  document.getElementById("tab-marks")?.classList.toggle("active", marksVisible);
+  document.getElementById("tab-timetable")?.classList.toggle("active", !marksVisible);
 }
 
 // Render Dynamic Provider Inputs based on selected channel
@@ -517,6 +625,28 @@ function renderLogs() {
 
 // Event Listeners
 function setupEventListeners() {
+  document.getElementById("tab-timetable")?.addEventListener("click", () => setActiveSection("timetable"));
+  document.getElementById("tab-marks")?.addEventListener("click", () => setActiveSection("marks"));
+  document.getElementById("btn-add-semester")?.addEventListener("click", addSemester);
+  document.getElementById("btn-save-marks")?.addEventListener("click", saveMarks);
+
+  document.getElementById("marks-semesters-container")?.addEventListener("click", (event) => {
+    const action = event.target.closest("[data-action]")?.dataset.action;
+    const card = event.target.closest(".semester-card");
+    if (!action || !card) return;
+    state.marks.semesters = collectMarksFromForm();
+    const semesterIndex = Number(card.dataset.semesterIndex);
+    if (action === "remove-semester") {
+      state.marks.semesters.splice(semesterIndex, 1);
+    } else if (action === "add-subject") {
+      state.marks.semesters[semesterIndex].subjects.push({ name: "", total: "", cat1: "", cat2: "", fat: "" });
+    } else if (action === "remove-subject") {
+      const subjectIndex = Number(event.target.closest("tr")?.dataset.subjectIndex);
+      state.marks.semesters[semesterIndex].subjects.splice(subjectIndex, 1);
+    }
+    renderMarks();
+  });
+
   // Theme Toggle
   const themeBtn = document.getElementById("btn-theme-toggle");
   if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
@@ -587,32 +717,60 @@ function setupEventListeners() {
   const settingsTab = document.getElementById("settings-drawer-tab");
   const settingsBackdrop = document.getElementById("settings-backdrop");
   const settingsClose = document.getElementById("drawer-close-btn");
+  const timetableDrawer = document.getElementById("timetable-drawer");
+  const timetableTab = document.getElementById("timetable-drawer-tab");
+  const timetableClose = document.getElementById("timetable-close-btn");
 
-  const setSettingsDrawerOpen = (isOpen) => {
-    if (!settingsDrawer || !settingsTab) return;
+  const setDrawerOpen = (drawer, tab, closeButton, isOpen) => {
+    if (!drawer || !tab) return;
 
-    settingsDrawer.classList.toggle("is-open", isOpen);
+    drawer.classList.toggle("is-open", isOpen);
     settingsBackdrop?.classList.toggle("is-open", isOpen);
-    settingsTab.classList.toggle("drawer-open", isOpen);
-    settingsTab.setAttribute("aria-expanded", String(isOpen));
+    tab.classList.toggle("drawer-open", isOpen);
+    tab.setAttribute("aria-expanded", String(isOpen));
     document.body.classList.toggle("settings-drawer-open", isOpen);
 
     if (isOpen) {
-      settingsClose?.focus();
+      closeButton?.focus();
     } else {
-      settingsTab.focus();
+      tab.focus();
     }
   };
 
   settingsTab?.addEventListener("click", () => {
-    setSettingsDrawerOpen(!settingsDrawer?.classList.contains("is-open"));
+    setDrawerOpen(settingsDrawer, settingsTab, settingsClose, !settingsDrawer?.classList.contains("is-open"));
   });
-  settingsClose?.addEventListener("click", () => setSettingsDrawerOpen(false));
-  settingsBackdrop?.addEventListener("click", () => setSettingsDrawerOpen(false));
+  settingsClose?.addEventListener("click", () => setDrawerOpen(settingsDrawer, settingsTab, settingsClose, false));
+  timetableTab?.addEventListener("click", () => {
+    setDrawerOpen(timetableDrawer, timetableTab, timetableClose, !timetableDrawer?.classList.contains("is-open"));
+  });
+  timetableClose?.addEventListener("click", () => setDrawerOpen(timetableDrawer, timetableTab, timetableClose, false));
+  settingsBackdrop?.addEventListener("click", () => {
+    setDrawerOpen(settingsDrawer, settingsTab, settingsClose, false);
+    setDrawerOpen(timetableDrawer, timetableTab, timetableClose, false);
+  });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && settingsDrawer?.classList.contains("is-open")) {
-      setSettingsDrawerOpen(false);
+    if (e.key === "Escape") {
+      if (settingsDrawer?.classList.contains("is-open")) setDrawerOpen(settingsDrawer, settingsTab, settingsClose, false);
+      if (timetableDrawer?.classList.contains("is-open")) setDrawerOpen(timetableDrawer, timetableTab, timetableClose, false);
     }
+  });
+
+  const timetableFileInput = document.getElementById("timetable-file-input");
+  const timetableTextInput = document.getElementById("timetable-text-input");
+  timetableFileInput?.addEventListener("change", handleTimetableFileSelect);
+  timetableTextInput?.addEventListener("input", () => {
+    saveTimetableDraft();
+    updateTimetableImportPreview();
+  });
+  document.getElementById("timetable-import-form")?.addEventListener("submit", handleTimetableImport);
+
+  const sendDaySelect = document.getElementById("send-day-select");
+  sendDaySelect?.addEventListener("change", () => {
+    state.selectedDay = sendDaySelect.value;
+    renderDayTabs();
+    renderSchedule();
+    updatePhonePreview(state.selectedDay);
   });
 
   // Send Now Hero Button
@@ -644,6 +802,81 @@ function setupEventListeners() {
   const btnRefreshLogs = document.getElementById("btn-refresh-logs");
   if (btnRefreshLogs) {
     btnRefreshLogs.addEventListener("click", refreshLogs);
+  }
+}
+
+function saveTimetableDraft() {
+  const textarea = document.getElementById("timetable-text-input");
+  if (textarea) localStorage.setItem(TIMETABLE_DRAFT_KEY, textarea.value);
+}
+
+function restoreTimetableDraft() {
+  const textarea = document.getElementById("timetable-text-input");
+  const savedDraft = localStorage.getItem(TIMETABLE_DRAFT_KEY);
+  if (textarea && savedDraft) {
+    textarea.value = savedDraft;
+    updateTimetableImportPreview();
+  }
+}
+
+function updateTimetableImportPreview() {
+  const textarea = document.getElementById("timetable-text-input");
+  const preview = document.getElementById("timetable-import-preview");
+  if (!textarea || !preview) return;
+
+  const lines = textarea.value.trim().split(/\r?\n/).filter(Boolean);
+  preview.textContent = lines.length > 1
+    ? `${lines.length - 1} timetable row${lines.length === 2 ? "" : "s"} ready to import.`
+    : "Add a CSV or TSV header and at least one timetable row.";
+}
+
+function handleTimetableFileSelect(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const textarea = document.getElementById("timetable-text-input");
+    if (textarea) textarea.value = String(reader.result || "");
+    saveTimetableDraft();
+    updateTimetableImportPreview();
+  };
+  reader.onerror = () => showToast("Unable to read the timetable file.", "error");
+  reader.readAsText(file);
+}
+
+async function handleTimetableImport(event) {
+  event.preventDefault();
+  const textarea = document.getElementById("timetable-text-input");
+  const button = document.getElementById("btn-import-timetable");
+  const content = textarea?.value.trim() || "";
+  const rows = content.split(/\r?\n/).filter(Boolean);
+
+  if (rows.length < 2) {
+    showToast("Add a header and at least one timetable row first.", "error");
+    return;
+  }
+
+  saveTimetableDraft();
+
+  if (button) button.disabled = true;
+  try {
+    const response = await fetch("/api/timetable/text", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      throw new Error(result.detail || "Timetable import failed.");
+    }
+
+    await loadData();
+    showToast(`Timetable imported successfully: ${result.count} rows applied.`);
+  } catch (error) {
+    showToast(error.message || "Network error while importing timetable.", "error");
+  } finally {
+    if (button) button.disabled = false;
   }
 }
 
@@ -764,7 +997,7 @@ async function handleSendNow() {
 
 // Send Selected Day Handler
 async function handleSendSelectedDay() {
-  const targetDay = state.selectedDay === "ALL" ? "Monday" : state.selectedDay;
+  const targetDay = document.getElementById("send-day-select")?.value || state.selectedDay;
   const btn = document.getElementById("btn-send-selected-day");
   const originalText = btn.textContent;
   btn.disabled = true;

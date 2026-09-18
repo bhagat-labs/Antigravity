@@ -18,13 +18,11 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Start the scheduler on app startup
     try:
         scheduler_instance.start()
     except Exception as e:
         print(f"Failed to auto-start scheduler: {e}")
     yield
-    # Shutdown scheduler on app shutdown
     try:
         scheduler_instance.stop()
     except Exception:
@@ -72,6 +70,39 @@ async def update_timetable(data: list = Body(...)):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+class TextImportRequest(BaseModel):
+    content: str
+
+@app.post("/api/timetable/text")
+async def upload_timetable_text(payload: TextImportRequest):
+    """API endpoint to paste and refresh timetable from raw CSV/TSV text."""
+    try:
+        timetable_data = notifier.parse_csv_timetable(payload.content)
+        notifier.save_timetable(timetable_data)
+        return {
+            "success": True,
+            "message": "Timetable refreshed successfully from text",
+            "count": len(timetable_data),
+            "timetable": timetable_data
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to process pasted text: {str(e)}")
+
+
+@app.get("/api/marks")
+async def get_marks():
+    return notifier.load_marks()
+
+
+@app.post("/api/marks")
+async def update_marks(data: Dict[str, Any] = Body(...)):
+    try:
+        notifier.save_marks(data)
+        return {"success": True, "message": "Marks saved successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
 @app.get("/api/config")
 async def get_config():
     return notifier.load_config()
@@ -83,7 +114,6 @@ async def save_config(cfg: Dict[str, Any] = Body(...)):
         old_cfg = notifier.load_config()
         notifier.save_config(cfg)
         
-        # If daily reminder time changed, reschedule job
         new_time = cfg.get("daily_reminder_time")
         if new_time and new_time != old_cfg.get("daily_reminder_time"):
             scheduler_instance.update_daily_time(new_time)
@@ -166,8 +196,6 @@ def health_ping():
     return {"status": "ok", "ping": "active"}
 
 from mangum import Mangum
-
-# This handler allows Netlify to route requests into FastAPI
 handler = Mangum(app)
 
 if __name__ == "__main__":
