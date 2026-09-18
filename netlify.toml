@@ -6,7 +6,7 @@
   directory = "netlify/functions"
   included_files = ["config.json", "reminder_logs.json"]
 
-[[redirects]]
+  [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/api/*"
+  to = "/.netlify/functions/api/:splat"
   status = 200
